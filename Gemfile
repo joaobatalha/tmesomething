@@ -7,6 +7,8 @@ gem 'rails', '3.2.7'
 
 group :development do
   gem 'sqlite3'
+  gem 'hpricot'
+  gem 'ruby_parser'
 end
 
 group :production do
@@ -23,12 +25,18 @@ group :assets do
   # gem 'therubyracer', :platforms => :ruby
 
   gem 'uglifier', '>= 1.0.3'
+  gem 'compass-rails'
+  gem 'zurb-foundation'
 end
 
 gem 'jquery-rails'
 
+gem 'haml-rails'
+
+
+
 # To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
+gem 'bcrypt-ruby', '~> 3.0.0'
 
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'

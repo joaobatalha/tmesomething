@@ -1,0 +1,22 @@
+!!!
+%html
+  %head
+    %title Tmesomething
+    = stylesheet_link_tag    "application", :media => "all"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+  %body
+    .fixed
+    %nav.top-bar
+      %ul
+        %li.name
+          %h1=link_to "TmeSomething", root_path
+        %li.toggle-topbar
+          %a{:href => "#"}
+      %section 
+        %ul.right
+          %li.divider
+          %li= link_to "Sign In", "#", class: "active"
+          %li.divider
+          %li= link_to "Sign Up", "#", class: "active" 
+    = yield
