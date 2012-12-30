@@ -15,8 +15,15 @@
           %a{:href => "#"}
       %section 
         %ul.right
-          %li.divider
-          %li= link_to "Sign In", signin_path, class: "active"
-          %li.divider
-          %li= link_to "Sign Up", signup_path, class: "active" 
+          - if !signed_in?
+            %li.divider
+            %li= link_to "Sign In", signin_path, class: "active"
+            %li.divider
+            %li= link_to "Sign Up", signup_path, class: "active" 
+          - else
+            %li
+              %a.active{:href => "#"}
+                = current_user.username
+            %li.divider
+            %li= link_to "Sign Out", signout_path, method: "delete", class: "active"         
     = yield
