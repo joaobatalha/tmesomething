@@ -11,7 +11,11 @@ Tmesomething::Application.routes.draw do
   match "/signin",   to: "sessions#new"
   match "/signout", to: "sessions#destroy"
 
-  root to: "static_pages#home"
+  match "/trending", to: "posts#trending"
+ 
+  match "posts/:id/like", to: "posts#like", :as => :like
+
+  root to: "posts#index"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

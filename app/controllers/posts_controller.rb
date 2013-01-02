@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
+    @posts = Post.order("created_at DESC").all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -42,6 +42,7 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(params[:post])
     @post.user_id = current_user.id
+    @post.author  = current_user.username
 
     respond_to do |format|
       if @post.save
@@ -81,4 +82,36 @@ class PostsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def like
+    @post = Post.find(params[:id])
+
+    if @post.likes_user_ids == nil
+      @post.likes_user_ids = [current_user.id]
+    else
+      if (@post.likes_user_ids.include? current_user.id) || (@post.user_id == current_user.id)
+        #user already liked this post, flash message
+      else
+        @post.likes_count += 1
+        increment_score(@post.user_id)
+        @post.likes_user_ids.push(current_user.id)
+      end
+    end
+    @post.save
+    
+    respond_to do |format|
+      format.json { render json: @post.likes_count}
+    end
+    # render nothing: true
+  end
+
+  def trending
+    @posts = Post.order("created_at DESC").where("likes_count >= '3'")
+
+    respond_to do |format|
+      format.html 
+      format.json { render json: @posts }
+    end
+  end
+
 end

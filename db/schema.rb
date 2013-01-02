@@ -11,24 +11,28 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121230190617) do
+ActiveRecord::Schema.define(:version => 20130101192301) do
 
   create_table "posts", :force => true do |t|
     t.string   "title"
     t.string   "image_url"
     t.integer  "user_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+    t.string   "author"
+    t.integer  "likes_count",    :default => 0
+    t.text     "likes_user_ids"
   end
 
   create_table "users", :force => true do |t|
     t.string   "username"
     t.string   "email"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
     t.string   "password_digest"
     t.string   "salt"
     t.string   "remember_token"
+    t.integer  "score",           :default => 0
   end
 
   add_index "users", ["remember_token"], :name => "index_users_on_remember_token"

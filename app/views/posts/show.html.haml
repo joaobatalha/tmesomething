@@ -1,13 +1,27 @@
 %p#notice= notice
-%p
-  %b Title:
-  = @post.title
-%p
-  %b Image url:
-  = @post.image_url
-%p
-  %b User:
-  = @post.user_id
+.eight.columns.centered
+  #post.panel.radius
+    #title.row
+      %p
+        = @post.title
+    #post_body.row
+      .eight.columns
+        %img{src: "#{@post.image_url}"}
+      .four.columns
+        %p
+          = @post.author
+        .button.round.success
+          Like
+
+
+
+
+/ %p
+/   %b Title:
+/   = @post.title
+/ %p
+/   %b Image url:
+/   = @post.image_url
 = link_to 'Edit', edit_post_path(@post)
 |
 \#{link_to 'Back', posts_path}

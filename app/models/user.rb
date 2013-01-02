@@ -1,9 +1,7 @@
 class User < ActiveRecord::Base
   has_many :posts	
   has_secure_password
-  attr_accessible :email, :username, :password, :password_confirmation, :id
-
-  validates :password, presence: true, confirmation: true
+  attr_accessible :email, :username, :password, :password_confirmation, :id, :score
 
   before_save :create_remember_token
 
