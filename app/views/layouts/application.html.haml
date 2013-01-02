@@ -5,6 +5,8 @@
     = stylesheet_link_tag    "application", :media => "all"
     = javascript_include_tag "application"
     = csrf_meta_tags
+    = javascript_include_tag "http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+
   %body
     .fixed
     %nav.top-bar
@@ -32,5 +34,7 @@
               %a.active{:href => "#"}
                 = current_user.username
             %li.divider
-            %li= link_to "Sign Out", signout_path, method: "delete", class: "active"         
+            %li= link_to "Sign Out", signout_path, method: "delete", class: "active"
+
+    $$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$$         
     = yield
