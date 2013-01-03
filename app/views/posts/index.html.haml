@@ -15,6 +15,10 @@
         .eight.columns
           %a{:href => "#{post_path(post)}"}
             %img{:src => "#{post.image_url}"}
+          - if post.latex_content.nil? != true
+            #latex_content
+              = post.latex_content
+
         .four.columns
           %p
             = post.author
