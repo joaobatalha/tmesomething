@@ -16,5 +16,8 @@
   .field
     = f.label :latex_content
     = f.text_area :latex_content
+  .field
+    = f.label :category
+    = f.select :category, Post::CATEGORIES
   .actions
     = f.submit class: "button"

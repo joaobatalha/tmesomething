@@ -2,7 +2,15 @@ Tmesomething::Application.routes.draw do
   
   resources :sessions, only: [:create, :new, :destroy]
 
-  resources :posts
+  resources :posts do
+    member do 
+      get "like"  #GET /posts/:id/like
+    end
+
+    collection do
+      get "filter" #GET /posts/filter
+    end
+  end
 
   resources :users
 
@@ -13,7 +21,8 @@ Tmesomething::Application.routes.draw do
 
   match "/trending", to: "posts#trending"
  
-  match "posts/:id/like", to: "posts#like", :as => :like
+  # match "posts/:id/like", to: "posts#like", :as => :like
+
 
   root to: "posts#index"
 

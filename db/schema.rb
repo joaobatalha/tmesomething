@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130102191610) do
+ActiveRecord::Schema.define(:version => 20130103222647) do
 
   create_table "posts", :force => true do |t|
     t.string   "title"
@@ -23,6 +23,16 @@ ActiveRecord::Schema.define(:version => 20130102191610) do
     t.integer  "likes_count",    :default => 0
     t.text     "likes_user_ids"
     t.text     "latex_content"
+    t.string   "category"
+  end
+
+  create_table "tasks", :force => true do |t|
+    t.string   "title",       :null => false
+    t.text     "description"
+    t.integer  "user_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.string   "image_url"
   end
 
   create_table "users", :force => true do |t|
