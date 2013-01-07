@@ -8,10 +8,13 @@
       - Post::CATEGORIES.each do |category|
         .row
           .four.columns
-            %label{:for => "checkbox_#{category}"}
+            %label{:for => "checkbox_#{category}", :onclick => "filter('#{category}')"}
               %input{ :type => "checkbox", :id =>"checkbox_#{category}", :style => "display: none;" }
-              %span.custom.checkbox
+              %span.custom.checkbox{:id => "checkbox_span_#{category}"}
               =category
+  .row
+    .button{onclick: "filter()"} 
+      Filter
 .seven.columns
   .row
     %ul{:style => "list-style-type: none;"}
@@ -21,7 +24,7 @@
         / .button.large.right{style: "display: inline;"}
         - if current_user != nil
           = link_to "New Post", new_post_path, class: "button large radius right", style: "color: white;"
-  .row
+  #posts_row.row
     - @posts.each do |post|
       #post.panel.radius
         #title.row

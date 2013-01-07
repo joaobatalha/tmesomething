@@ -115,12 +115,13 @@ class PostsController < ApplicationController
   end
 
   def filter
-    @posts = Post.order("created_at DESC").where("category == '#{params[:category]}'")
+    @posts = Post.order("created_at DESC").where(:category => params[:categories])
+    render template: 'posts/filter', layout: false
 
-    respond_to do |format|
-      format.html
-      format.json { render json: @posts}
-    end
+    # respond_to do |format|
+    #   format.html
+    #   format.json { render json: @posts, layout: false}
+    # end
   end
 
 end

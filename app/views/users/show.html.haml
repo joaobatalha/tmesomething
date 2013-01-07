@@ -3,6 +3,9 @@
   %b Username:
   = @user.username
 %p
+  %b Score:
+  = @user.score
+%p
   %b Email:
   = @user.email
 = link_to 'Edit', edit_user_path(@user)
