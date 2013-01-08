@@ -38,12 +38,13 @@ function filter(category){
 	}
 
 	console.log(checked);
-	if ($("#checkbox_span_" + category).hasClass("checked") == false){
+	// if ($("#checkbox_span_" + category).hasClass("checked") == false){
 		var jqxhr = $.get("/posts/filter", { 'categories[]' : checked }, function(data){
 			$("#posts_row")[0].innerHTML = data;
 			rerender_latex();
 		});
-	}
+	// }
+
 }
 
 function rerender_latex(){
