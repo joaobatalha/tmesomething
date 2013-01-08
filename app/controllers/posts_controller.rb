@@ -102,7 +102,6 @@ class PostsController < ApplicationController
     respond_to do |format|
       format.json { render json: @post.likes_count}
     end
-    # render nothing: true
   end
 
   def trending
@@ -115,7 +114,12 @@ class PostsController < ApplicationController
   end
 
   def filter
-    @posts = Post.order("created_at DESC").where(:category => params[:categories])
+    if params[:categories].nil?
+      puts "JOAO=================>"
+      @posts = Post.order("created_at DESC").all
+    else
+      @posts = Post.order("created_at DESC").where(:category => params[:categories])
+    end
     render template: 'posts/filter', layout: false
 
     # respond_to do |format|
@@ -123,5 +127,4 @@ class PostsController < ApplicationController
     #   format.json { render json: @posts, layout: false}
     # end
   end
-
 end

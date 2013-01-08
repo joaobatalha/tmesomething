@@ -1,3 +1,29 @@
 // Place all the styles related to the Posts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.base {
+ /*make it 100% width and a minimum of 1000px width*/
+ width: auto;
+ margin-left: 0px;
+ margin-right: 0px;
+ min-width: 1000px;
+ padding: 0px;
+display:table;
+ }
+.base-row {
+ Display: table-row;
+ }
+.base {
+ display: table-cell;
+ width: 50%;
+ }
+.cell1 {
+ background-color: #f00;
+ }
+.cell2 {
+ background-color: #0f0;
+ }
+.cell3 {
+ background-color: #00f;
+ }
