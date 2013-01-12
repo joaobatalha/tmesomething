@@ -28,9 +28,13 @@
 //  background-color: #00f;
 //  }
 
+html {
+  background: url('/assets/grey.png')
+}
+
 .post_panel{
   margin-bottom: 20px;
-  background-color: rgba(236, 236, 236, 0.6);
+  background-color: rgba(236, 236, 236,1);
   padding: 20px;
   border-radius: 5px;
 }
