@@ -50,3 +50,6 @@ function filter(category){
 function rerender_latex(){
 	MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
 }
+
+
+
