@@ -43,7 +43,8 @@
                 Like
         %article.post_container.clearfix
           .image_container
-            = image_tag(post.image_url)
+            - if post.latex_content.nil? != true
+              %img{:src => "#{post.image_url}", :alt => "Illustrating picture"} 
           .latex_container
             - if post.latex_content.nil? != true
               = post.latex_content
@@ -51,33 +52,3 @@
               No latex content
 
 
-
-
-        / .row
-        /   .six.columns
-        /     %h3
-        /       = post.title
-        /   .six.columns
-        /     %h3
-        /       by
-        /       = link_to "#{post.author}", current_user
-        / .row
-        /   .six.columns
-        /     %a{:href => "#{post_path(post)}"}
-        /       %img{:src => "#{post.image_url}"}
-        /   .six.columns
-        /     - if post.latex_content.nil? != true
-        /       = post.latex_content
-        / %br
-        / .row
-        / .six.columns{style: "display: inline;"}
-        /   - if (current_user == nil) || (post.likes_user_ids.include? current_user.id) || (post.user_id == current_user.id)
-        /     .button.round.success.disabled{onclick: "like(#{post.id})", :id => "like_button_#{post.id}", style: "display: inline;"}
-        /       Like
-        /   -else
-        /     .button.round.success{onclick: "like(#{post.id})", :id => "like_button_#{post.id}", style: "display: inline;"}
-        /       Like
-        /     %p#category{style: "display: inline;"}
-        /       - if post.category.nil? != true
-        /         = post.category
-          
