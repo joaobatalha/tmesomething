@@ -1,29 +1,53 @@
-.seven.columns.centered
-  %ul{:style => "list-style-type: none;"}
-    %li{style: "display: inline;"}  
-      %h1{style: "display: inline;"} Trending Posts
-    %li{style: "display: inline;"}
-      / .button.large.right{style: "display: inline;"}
-      - if current_user != nil
-        = link_to "New Post", new_post_path, class: "button large radius right", style: "color: white;"
-  - @posts.each do |post|
-    #post.panel.radius
-      #title.row
-        %h3
-          = post.title
-      #post_body.row
-        .eight.columns
-          %a{:href => "#{post_path(post)}"}
-            %img{:src => "#{post.image_url}"}
-        .four.columns
-          %p
-            = post.author
-          - if (current_user == nil) || (post.likes_user_ids.include? current_user.id) || (post.user_id == current_user.id)
-            .button.round.success.disabled{onclick: "like(#{post.id})", :id => "like_button_#{post.id}"}
-              Like
-          -else
-            .button.round.success{onclick: "like(#{post.id})", :id => "like_button_#{post.id}"}
-              Like
-          %p{:id => "likes_count_#{post.id}"}
-            = post.likes_count
-    %br/
+.two.columns
+  .row
+    %ul{:style => "list-style-type: none;"}
+      %li{style: "display: inline;"}  
+        %h1{style: "display: inline;"} Filters
+  .row
+    %form.custom
+      - Post::CATEGORIES.each do |category|
+        .row
+          .four.columns
+            %label{:for => "checkbox_#{category}", :onclick => "filter('#{category}')"}
+              %input{ :type => "checkbox", :id =>"checkbox_#{category}", :style => "display: none;" }
+              %span.custom.checkbox{:id => "checkbox_span_#{category}"}
+              =category
+
+.nine.columns
+  .row
+    %ul{:style => "list-style-type: none;"}
+      %li{style: "display: inline;"}  
+        %h1{style: "display: inline;"} Trending posts
+      %li{style: "display: inline;"}
+        / .button.large.right{style: "display: inline;"}
+        - if current_user != nil
+          = link_to "New Post", new_post_path, class: "button large radius right", style: "color: white;"
+  #posts_row.row
+    - @posts.each do |post|
+      .post_panel
+        .post_header.clearfix
+          .post_info.clearfix
+            %h3.post_title
+              = post.title
+          .extra_info
+            %h3.author_name 
+              by
+              = link_to "#{post.author}", user_path(post.user_id)
+              in 
+              = post.category
+            - if (current_user == nil) || (post.likes_user_ids.include? current_user.id) || (post.user_id == current_user.id)
+              .button.round.success.disabled{onclick: "like(#{post.id})", :id => "like_button_#{post.id}"}
+                Like
+            -else
+              .button.round.success{onclick: "like(#{post.id})", :id => "like_button_#{post.id}"}
+                Like
+        %article.post_container.clearfix
+          .image_container
+            = image_tag("#{post.image_url}")
+          .latex_container
+            - if post.latex_content.nil? != true
+              = post.latex_content
+            -else
+              No latex content
+
+

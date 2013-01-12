@@ -115,7 +115,6 @@ class PostsController < ApplicationController
 
   def filter
     if params[:categories].nil?
-      puts "JOAO=================>"
       @posts = Post.order("created_at DESC").all
     else
       @posts = Post.order("created_at DESC").where(:category => params[:categories])

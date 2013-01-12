@@ -12,9 +12,7 @@
               %input{ :type => "checkbox", :id =>"checkbox_#{category}", :style => "display: none;" }
               %span.custom.checkbox{:id => "checkbox_span_#{category}"}
               =category
-  .row
-    .button{onclick: "filter()"} 
-      Filter
+
 .nine.columns
   .row
     %ul{:style => "list-style-type: none;"}
@@ -26,89 +24,60 @@
           = link_to "New Post", new_post_path, class: "button large radius right", style: "color: white;"
   #posts_row.row
     - @posts.each do |post|
-      #post.panel.radius.row
-        .row
-          .six.columns
-            %h3
+      .post_panel
+        .post_header.clearfix
+          .post_info.clearfix
+            %h3.post_title
               = post.title
-          .six.columns
-            %h3
+          .extra_info
+            %h3.author_name 
               by
-              = link_to "#{post.author}", current_user
-        .row
-          .six.columns
-            %a{:href => "#{post_path(post)}"}
-              %img{:src => "#{post.image_url}"}
-          .six.columns
-            - if post.latex_content.nil? != true
-              = post.latex_content
-        %br
-        .row
-          .six.columns{style: "display: inline;"}
+              = link_to "#{post.author}", user_path(post.user_id)
+              in 
+              = post.category
             - if (current_user == nil) || (post.likes_user_ids.include? current_user.id) || (post.user_id == current_user.id)
-              .button.round.success.disabled{onclick: "like(#{post.id})", :id => "like_button_#{post.id}", style: "display: inline;"}
+              .button.round.success.disabled{onclick: "like(#{post.id})", :id => "like_button_#{post.id}"}
                 Like
             -else
-              .button.round.success{onclick: "like(#{post.id})", :id => "like_button_#{post.id}", style: "display: inline;"}
+              .button.round.success{onclick: "like(#{post.id})", :id => "like_button_#{post.id}"}
                 Like
-            %p#category{style: "display: inline;"}
-              - if post.category.nil? != true
-                = post.category
-          
-          
-          
+        %article.post_container.clearfix
+          .image_container
+            = image_tag("#{post.image_url}")
+          .latex_container
+            - if post.latex_content.nil? != true
+              = post.latex_content
+            -else
+              No latex content
 
 
-        / %h3
-        /   by
-        /   = link_to "#{post.author}", current_user
+
+
         / .row
-        /   %a{:href => "#{post_path(post)}"}
-        /     %img{:src => "#{post.image_url}"}
-        / - if post.latex_content.nil? != true
-        /   #latex_content
-        /     = post.latex_content
-        / .six.columns
-        /   .row
+        /   .six.columns
+        /     %h3
+        /       = post.title
+        /   .six.columns
         /     %h3
         /       by
         /       = link_to "#{post.author}", current_user
-
-        /   .row{style: "background: white; height: 100%;"}
-        /     - if post.latex_content.nil? != true
-        /       = post.latex_content
-
-      %br
-
-
-
-
-
-
-
-        / #title.row
-        /   %h3
-        /     = post.title
-        / #post_body.row
-        /   .eight.columns
+        / .row
+        /   .six.columns
         /     %a{:href => "#{post_path(post)}"}
         /       %img{:src => "#{post.image_url}"}
+        /   .six.columns
         /     - if post.latex_content.nil? != true
-        /       #latex_content
-        /         = post.latex_content
-
-        /   .four.columns
-        /     %p
-        /       = post.author
-        /     - if (current_user == nil) || (post.likes_user_ids.include? current_user.id) || (post.user_id == current_user.id)
-        /       .button.round.success.disabled{onclick: "like(#{post.id})", :id => "like_button_#{post.id}"}
-        /         Like
-        /     -else
-        /       .button.round.success{onclick: "like(#{post.id})", :id => "like_button_#{post.id}"}
-        /         Like
-        /     %p{:id => "likes_count_#{post.id}"}
-        /       = post.likes_count
-        /     %p#category
+        /       = post.latex_content
+        / %br
+        / .row
+        / .six.columns{style: "display: inline;"}
+        /   - if (current_user == nil) || (post.likes_user_ids.include? current_user.id) || (post.user_id == current_user.id)
+        /     .button.round.success.disabled{onclick: "like(#{post.id})", :id => "like_button_#{post.id}", style: "display: inline;"}
+        /       Like
+        /   -else
+        /     .button.round.success{onclick: "like(#{post.id})", :id => "like_button_#{post.id}", style: "display: inline;"}
+        /       Like
+        /     %p#category{style: "display: inline;"}
         /       - if post.category.nil? != true
         /         = post.category
-    %br/
+          
