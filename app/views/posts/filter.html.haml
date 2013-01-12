@@ -19,7 +19,7 @@
               Like
       %article.post_container.clearfix
         .image_container
-          = image_tag("#{post.image_url}")
+          = image_tag(post.image_url)
         .latex_container
           - if post.latex_content.nil? != true
             = post.latex_content
