@@ -24,31 +24,38 @@
           = link_to "New Post", new_post_path, class: "button large radius right", style: "color: white;"
   #posts_row.row
     - @posts.each do |post|
-      .post_panel
-        .post_header.clearfix
-          .post_info.clearfix
-            %h3.post_title
+      .post-panel
+        .row.post-header
+          .six.columns.post-title
+            %h3 
               = post.title
-          .extra_info
-            %h3.author_name 
+          .six.columns.post-header-right.clearfix
+            %h3 
               by
               = link_to "#{post.author}", user_path(post.user_id)
-              in 
-              = post.category
-            - if (current_user == nil) || (post.likes_user_ids.include? current_user.id) || (post.user_id == current_user.id)
+              in
+              = post.category 
+
+            - if (current_user == nil) || (post.likes_user_ids.include? current_user.id) || (post.user_id == current_user.id) 
               .button.round.success.disabled{onclick: "like(#{post.id})", :id => "like_button_#{post.id}"}
                 Like
-            -else
+            - else
               .button.round.success{onclick: "like(#{post.id})", :id => "like_button_#{post.id}"}
                 Like
-        %article.post_container.clearfix
-          .image_container
-            - if post.latex_content.nil? != true
+            %h3 
+              = post.likes_count
+              Likes
+        .post-body.row
+          .latex-background
+          .six.columns.image-container
+            - if post.image_url
               %img{:src => "#{post.image_url}", :alt => "Illustrating picture"} 
-          .latex_container
-            - if post.latex_content.nil? != true
+          .six.columns.latex-container
+            - if post.latex_content
               = post.latex_content
-            -else
-              No latex content
+            - else
+              %p 
+                No latex content
+              %br 
 
 

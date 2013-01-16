@@ -32,73 +32,66 @@ html {
   background: url('/assets/grey.png')
 }
 
-.post_panel{
+.post-panel{
   margin-bottom: 20px;
   background-color: rgba(236, 236, 236,1);
   padding: 20px;
   border-radius: 5px;
+  box-shadow: 2px 2px 3px rgba(0,0,0, 0.5)
 }
 
-.post_container {
+.post-header{
+  position: relative;
+    h3{
+      display: inline;
+      margin: 0px;
+      padding: 0px;
+    }
+
+  padding-bottom: 10px;
+}
+
+.post-header-right{
+  position: relative;
+  .button {
+    float: right;
+  }
+
+  h3:nth-of-type(2){
+      float: right;
+      padding-right: 10px;
+      color: blue;  
+    }
+}
+
+.post-body {
+  position: relative;
   overflow: hidden;
-
-}
-.image_container {
-  float: left;
-  width: 50%;
-  padding-right: 20px;
 }
 
-.latex_container {
-  float: right;
-  width: 50%;
-  background-color: #FFFFFF;
-  padding: 10px;
+.image-container img{
+  width: 100%;
   border-radius: 5px;
 }
 
-.image_container, .latex_container {
+.latex-container{
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
   padding-bottom: 1000em;
   margin-bottom: -1000em;
+
 }
 
-.post_info{
-  margin-bottom: 15px;
-  width: 50%;
-  float: left;
-}
+.latex-background{
+  width: 49%;
+  position: absolute;
+  top: 0px;
+  right: 8px;
+  bottom: 0px;
+  background-color: white;
+  border-radius: 5px;
 
-.extra_info {
-  width: 50%;
-  float: right;
-  .button {
-    display: inline;
-    float: right;
-    margin-bottom: 12px;
-  }
-}
-
-.post_header{
-  overflow: hidden;
-  padding-bottom: 10px;
-}
-.post_info, .extra_info{
-  padding-bottom: 1000em;
-  margin-bottom: -1000em;
-}
-
-.author_name {
-  float: left;
-  margin: 0px;
-  // margin-right: 20px;
-}
-
-.post_title, .author_name{
-  display: inline;
-}
-
-.post_header {
-  margin: 0px;
 }
 
 .clearfix:after {
