@@ -1,3 +1,5 @@
+checked = []
+
 function like(id){
 	//Increment the likes count in the back end, (it will also increment the user score)
 	$.get("/posts/" + id + "/like", function(data){
@@ -18,32 +20,21 @@ function set_likes_count(id, count){
 }
 
 function filter(category){
-	var checkboxes = $(".custom.checkbox");
 	//Categories that the user will filter for, these are the actual categories
 	//eg. ["Chemistry", "Biology", "Physics"] 
-	var checked = []; 
-	var id;
-	for(var i = 0; i < checkboxes.length; i++){
-		id = checkboxes[i].id;
-		if($("#" + id).hasClass("checked")){
-			checked.push(id.split("_")[2]);
-		}
-	}
 
-	if($("#checkbox_span_" + category).hasClass("checked")){
-		checked.pop(category);
-	}
-	else{
+	var obj = $("#checkbox_" + category)[0];
+	if (obj.checked == false) {
 		checked.push(category);
 	}
+	else{
+		checked.pop(category);
+	}
 
-	console.log(checked);
-	// if ($("#checkbox_span_" + category).hasClass("checked") == false){
-		var jqxhr = $.get("/posts/filter", { 'categories[]' : checked }, function(data){
-			$("#posts_row")[0].innerHTML = data;
-			rerender_latex();
-		});
-	// }
+	var jqxhr = $.get("/posts/filter", { 'categories[]' : checked }, function(data){
+		$("#posts_row")[0].innerHTML = data;
+		rerender_latex();
+	});
 
 }
 

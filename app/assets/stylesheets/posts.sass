@@ -1,0 +1,87 @@
+// Place all the styles related to the Posts controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+// .base {
+//  /*make it 100% width and a minimum of 1000px width
+//  width: auto;
+//  margin-left: 0px;
+//  margin-right: 0px;
+//  min-width: 1000px;
+//  padding: 0px;
+// display:table;
+//  }
+// .base-row {
+//  Display: table-row;
+//  }
+// .base {
+//  display: table-cell;
+//  width: 50%;
+//  }
+// .cell1 {
+//  background-color: #f00;
+//  }
+// .cell2 {
+//  background-color: #0f0;
+//  }
+// .cell3 {
+//  background-color: #00f;
+//  }
+
+html, body
+  background: url("/assets/grey.png")
+
+.post-panel
+  margin-bottom: 20px
+  background-color: rgba(236, 236, 236, 1)
+  padding: 20px
+  border-radius: 5px
+  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5)
+
+.post-header
+  position: relative
+  h3
+    display: inline
+    margin: 0px
+    padding: 0px
+  padding-bottom: 10px
+
+.post-header-right
+  position: relative
+  .button
+    float: right
+  h3:nth-of-type(2)
+    float: right
+    padding-right: 10px
+    color: blue
+
+.post-body
+  position: relative
+  overflow: hidden
+
+.image-container img
+  width: 100%
+  border-radius: 5px
+
+.latex-container
+  padding-top: 10px
+  padding-left: 10px
+  padding-right: 10px
+  padding-bottom: 1000em
+  margin-bottom: -1000em
+
+.latex-background
+  width: 49%
+  position: absolute
+  top: 0px
+  right: 8px
+  bottom: 0px
+  background-color: white
+  border-radius: 5px
+
+.clearfix:after
+  clear: both
+  content: "."
+  display: block
+  height: 0
+  visibility: hidden
