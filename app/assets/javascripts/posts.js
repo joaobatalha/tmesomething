@@ -3,21 +3,17 @@ checked = []
 function like(id){
 	//Increment the likes count in the back end, (it will also increment the user score)
 	$.get("/posts/" + id + "/like", function(data){
-		set_likes_count(id, data);
+		console.log("here");
+		console.log(data);
+		var likes_count = $("[post_id='"+ id +"']" + " .likes_count")[0];
+		likes_count.textContent = data;
 	});
 
 	$("#like_button_" + id).addClass("disabled");
 
-	//Increment the likes count in the front end
-	// likes_count = parseInt($("#likes_count_" + id)[0].innerText);
-	// likes_count += 1;
-	// $("#likes_count_" + id)[0].innerText = likes_count;
-}
-
-function set_likes_count(id, count){
-	$("#likes_count_" + id)[0].innerText = count;
 
 }
+
 
 function filter(category){
 	//Categories that the user will filter for, these are the actual categories

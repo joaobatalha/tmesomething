@@ -1,5 +1,5 @@
-.post-panel
-  .row.post-header
+.post-panel{:post_id => "#{post.id}"}
+  .post-header.row
     .six.columns.post-title
       %h3 
         = post.title
@@ -16,9 +16,8 @@
       - else
         .button.round.success{onclick: "like(#{post.id})", :id => "like_button_#{post.id}"}
           Like
-      %h3 
-        = post.likes_count
-        Likes
+      %h3.likes_count
+        = pluralize(post.likes_count, "Like")
   .post-body.row
     .latex-background
     .six.columns.image-container

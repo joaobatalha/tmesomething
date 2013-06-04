@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  # include ActionView::Helpers::TextHelper
   # GET /posts
   # GET /posts.json
   def index
@@ -98,10 +99,6 @@ class PostsController < ApplicationController
       end
     end
     @post.save
-    
-    respond_to do |format|
-      format.json { render json: @post.likes_count}
-    end
   end
 
   def trending
@@ -120,10 +117,5 @@ class PostsController < ApplicationController
       @posts = Post.order("created_at DESC").where(:category => params[:categories])
     end
     render template: 'posts/filter', layout: false
-
-    # respond_to do |format|
-    #   format.html
-    #   format.json { render json: @posts, layout: false}
-    # end
   end
 end
